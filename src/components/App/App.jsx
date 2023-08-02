@@ -8,9 +8,10 @@ import PublicRoute from '../PublicRoute/PublicRoute';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Header from '../Header/Header';
 import Container from '../Container/Container';
+
 const ContactsPage = lazy(() => import('pages/ContactsPage'));
-const LoginPage = lazy(() => import('pages/LoginPage'));
-const RegisterPage = lazy(() => import('pages/RegisterPage'));
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -32,9 +33,11 @@ export const App = () => {
                 <Route path="/" element={<PublicRoute />}>
                   <Route path="/register" element={<RegisterPage />} />
                   <Route path="/login" element={<LoginPage />} />
+                  <Route path="*" element={<LoginPage />} />
                 </Route>
                 <Route path="/" element={<PrivateRoute />}>
                   <Route path="/contacts" element={<ContactsPage />} />
+                  <Route path="*" element={<ContactsPage/>} />
                 </Route>
               </Routes>
             </Suspense>
